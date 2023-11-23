@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-100 p-5 min-h-screen">
+    <div class="bg-gray-100 min-h-screen">
         <!-- 検索バー -->
         <div class="fixed z-40 w-full">
             <slot name="searchInput"></slot>
