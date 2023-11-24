@@ -5,7 +5,7 @@
             <slot name="searchInput"></slot>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 w-full pt-16">
-            <slot name="scoreCard"></slot>
+            <slot name="comedianCard"></slot>
         </div>
     </div>
 </template>

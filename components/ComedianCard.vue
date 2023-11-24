@@ -1,5 +1,5 @@
 <template>
-    <div class="card glass shadow-xl m-7">
+    <div class="card glass shadow-xl m-3">
         <div class="relative">
             <h2 class="text-center py-3 text-xl w-full text-violet-100 bg-slate-600 bg-opacity-70">
                 {{ props.comedian?.name }}</h2>

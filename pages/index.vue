@@ -3,7 +3,7 @@
     <template #searchInput>
       <SearchInput />
     </template>
-    <template #scoreCard>
+    <template #comedianCard>
       <ComedianCard v-for="comedian in comedians" :key="comedian.id" :comedian="comedian" @click="openModal(comedian)" />
     </template>
   </NuxtLayout>
@@ -11,17 +11,18 @@
 </template>
 
 <script setup lang='ts'>
+import type { Comedian } from '@prisma/client';
 // const comedians = ref([])
-const comedians = [
-  {id: 'dddd', name: 'sary', avgScrore: 96, score: 99}
-]
+const comedians: Ref<Comedian[]> = ref([])
 const modalState = reactive({
   showModal: false,
-  selectedComedian: ''
+  selectedComedian: {}
 })
 // provide('selectedComedian', modalState.selectedComedian)
-const openModal = (comedian) => {
+const openModal = (comedian: Comedian) => {
     modalState.selectedComedian = comedian;
     modalState.showModal = true;
 };
+comedians.value = await useAllComedian()
+
 </script>
