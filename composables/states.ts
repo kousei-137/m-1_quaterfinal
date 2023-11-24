@@ -1,15 +1,21 @@
 import type { Comedian } from "@prisma/client"
+import { useComediansStore } from "~/stores/comedians"
 
-export const useAllComedian = async (): Promise<Comedian[]> => {
+// export const useComedians = async() => {
+//     return useState<Comedian[]>('comedians', () => useAllComedian())
+// }
+
+export const fetchAllComedian = async () => {
+    const comedianStore = useComediansStore()
     try {
-        const { data, error } = useFetch('/api/getAllComedian')
+        const { data, error } = await useFetch('/api/getAllComedian')
         if (error.value) {
             throw createError({
                 statusCode: error.value.statusCode,
                 statusMessage: '全ての芸人を取得することができません。',
             })
         }
-        return data.value as Comedian[]; // ここで型アサーションを使用
+        comedianStore.value = data.value as Comedian[]
     } catch (error) {
         throw createError({
             statusCode: 500,

@@ -22,9 +22,11 @@
 </template>
 
 <script setup lang='ts'>
+import { Comedian } from '@prisma/client';
+import type { PropType } from 'vue';
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({
-    comedian: Object
+    comedian: Object as PropType<Comedian>
 })
 const emit = defineEmits(['close'])
 const isError: Ref<boolean> = ref(false)
