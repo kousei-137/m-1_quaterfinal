@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center py-8 bg-gray-100">
+    <div class="flex justify-center py-6 bg-gray-100">
       <div class="relative w-[calc(80%)]">
         <input 
           v-model="searchQuery" 
