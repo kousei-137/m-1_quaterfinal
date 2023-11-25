@@ -1,11 +1,11 @@
 <template>
     <dialog class="modal modal-bottom sm:modal-middle md:modal-middle bg-slate-700 bg-opacity-50" open>
         <div class="modal-box">
-            <div role="tablist" class="tabs tabs-boxed">
+            <div v-if="!isLoading" role="tablist" class="tabs tabs-boxed">
                 <input type="radio" name="my_tabs_1" role="tab" class="tab w-full" aria-label="ログイン" checked />
                 <div role="tabpanel" class="tab-content">
                     <div class="flex flex-col items-center justify-center pb-6">
-                        <AuthLogin />
+                        <AuthLogin @isLoading="handleLoading" />
                     </div>
                 </div>
 
@@ -16,15 +16,20 @@
                     </div>
                 </div>
             </div>
+            <span v-else class="loading loading-dots loading-lg"></span>
         </div>
 
         <form method="dialog" class="modal-backdrop" @click="emit('close', true)"></form>
     </dialog>
 </template>
   
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(['close'])
+const isLoading: Ref<boolean> = ref(false)
 
+const handleLoading = (bool: boolean) => {
+    isLoading.value = bool
+}
 // ここに認証ロジックを追加します
 </script>
   
