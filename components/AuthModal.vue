@@ -4,7 +4,7 @@
             <div v-if="!isLoading" role="tablist" class="tabs tabs-boxed">
                 <input type="radio" name="my_tabs_1" role="tab" class="tab w-full" aria-label="ログイン" checked />
                 <div role="tabpanel" class="tab-content">
-                    <div class="flex flex-col items-center justify-center pb-6">
+                    <div class="flex flex-col items-center justify-center p-3">
                         <AuthLogin @isLoading="handleLoading" />
                     </div>
                 </div>

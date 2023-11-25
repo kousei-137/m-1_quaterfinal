@@ -31,7 +31,7 @@ export default defineEventHandler(async (event: H3Event) => {
     const user = await prisma.user.create({
       data: {
         name: body.name,
-        passwordHash
+        passwordHash: passwordHash
       }
     })
 
