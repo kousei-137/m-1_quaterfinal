@@ -1,5 +1,5 @@
 <template>
-    <dialog class="modal modal-bottom sm:modal-middles bg-slate-700 bg-opacity-50" open>
+    <dialog class="modal modal-bottom sm:modal-middle bg-slate-700 bg-opacity-50" open>
         <div class="modal-box">
             <div class="flex flex-col h-full">
                 <h2 class="flex-1 font-bold text-2xl">{{ props.comedian?.name }}</h2>
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang='ts'>
-import { Comedian } from '@prisma/client';
+import type { Comedian } from '@prisma/client';
 import type { PropType } from 'vue';
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({

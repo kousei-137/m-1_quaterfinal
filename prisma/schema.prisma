@@ -12,9 +12,9 @@ datasource db {
 
 model User {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?  @unique
+  name            String  @unique
   passwordHash    String?
-  twitterId       String?  @unique
+  // twitterId       String?
   // instagramId     String?  @unique
   // googleId        String?  @unique
   isEmailVerified Boolean  @default(false)
@@ -38,7 +38,7 @@ model Score {
   scoreDate DateTime @default(now())
 
   user   User   @relation(fields: [userId], references: [id])
-  geisha Comedian @relation(fields: [comedianId], references: [id])
+  comedian Comedian @relation(fields: [comedianId], references: [id])
 
   @@index([userId], name: "userIndex")
   @@index([comedianId], name: "comedianIndex")
