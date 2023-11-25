@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <template #searchInput>
-      <SearchInput />
+      <SearchInput @searched="scrollToComedian" />
     </template>
     <template #comedianCard>
       <ComedianCard v-for="comedian in comedians" :key="comedian.id" :id="comedian.id" :comedian="comedian" @click="openModal(comedian)" />
@@ -20,8 +20,7 @@
 
 <script setup lang='ts'>
 import type { Comedian } from '@prisma/client';
-import { useComediansStore } from '~/stores/comedians'
-const comedians: Ref<Comedian[]> = useComediansStore()
+const comedians: Ref<Comedian[]> = useState('comedians')
 
 // const comedians = ref([])
 // const comedians: Ref<Comedian[]> = ref([])
@@ -38,6 +37,11 @@ const openModal = (comedian: Comedian) => {
 // const state = useState('comedians', () => {
 //   shallowRef(comedians)
 // })
-await fetchAllComedian()
+const scrollToComedian = (searchedComedian: Comedian) => {
+  const element = document.getElementById(searchedComedian.id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
 
 </script>

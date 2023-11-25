@@ -1,8 +1,8 @@
 <template>
     <div class="absolute z-50 mt-2 w-full overflow-hidden rounded-md bg-white">
-        <ul v-show="searchValue.length > 0" class="absolutew-[calc(80%)]list-none">
+        <ul class="absolutew-[calc(80%)]list-none">
           <li v-if="filteredComedians.length > 0" v-for="comedian in filteredComedians" :key="comedian.id"
-            @click="emit('selectedComedian', comedian)"
+            @click='emit("searched", comedian)'
             class="cursor-pointer hover:bg-yellow-50 hover:text-gray-900 px-4 py-2">
             {{ comedian.name }}
           </li>
@@ -21,9 +21,9 @@ const props = defineProps({
         required: true
     }
 })
-const emit = defineEmits(['selectedComedian'])
+const emit = defineEmits(['searched'])
 // const searchValue: Ref<string> = ref('')
-const comedians: Ref<Comedian[]> = useComediansStore()
+const comedians: Ref<Comedian[]> = useState('comedians')
 const filteredComedians: Ref<Comedian[]> = ref([])
 const searchedComedian: Ref<Comedian> = ref({} as Comedian)
 
@@ -32,4 +32,7 @@ watchEffect(() => {
         return comedian.name.startsWith(props.searchValue)
     })
 })
+// watchEffect(() => {
+//   useState('searchedComedian', () => searchedComedian.value)
+// })
 </script>
