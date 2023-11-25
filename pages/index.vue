@@ -15,7 +15,9 @@
       <ComedianCard v-for="comedian in comedians" :key="comedian.id" :comedian="comedian" @click="openModal(comedian)" />
     </div>
   </div> -->
-  <ScoreModal v-if="status" v-show="modalState.showModal" @close="modalState.showModal=false" :comedian="modalState.selectedComedian"/>
+  <ScoreModal v-if="false" v-show="modalState.showModal" @close="modalState.showModal=false" :comedian="modalState.selectedComedian"/>
+  <!-- <ScoreModal v-if="status='authenticated'" v-show="modalState.showModal" @close="modalState.showModal=false" :comedian="modalState.selectedComedian"/> -->
+  <AuthModal v-else v-show="modalState.showModal" @close="modalState.showModal=false" />
 </template>
 
 <script setup lang='ts'>
@@ -32,7 +34,7 @@ const comedians: Ref<Comedian[]> = useState('comedians')
 // const comedians: Ref<Comedian[]> = ref([])
 const modalState = reactive({
   showModal: false,
-  selectedComedian: {}
+  selectedComedian: {} as Comedian
 })
 // provide('selectedComedian', modalState.selectedComedian)
 const openModal = (comedian: Comedian) => {
@@ -49,5 +51,6 @@ const scrollToComedian = (searchedComedian: Comedian) => {
     element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
+console.log(status.value)
 
 </script>
