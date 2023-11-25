@@ -1,7 +1,7 @@
 <template>
-    <div class="card glass shadow-xl m-3">
+    <div class="card glass shadow-xl m-3 card-shadow">
         <div class="relative">
-            <h2 class="text-center py-3 text-xl w-full text-violet-100 bg-slate-600 bg-opacity-70">
+            <h2 class="text-center py-3 text-xl w-full rounded-t-2xl text-violet-100 bg-slate-600 bg-opacity-70">
                 {{ props.comedian?.name }}</h2>
             
             <div class="flex">
@@ -27,5 +27,16 @@ const props = defineProps({
         required: true
     }
 })
-console.log(props.comedian)
+// console.log(props.comedian)
 </script>
+
+<style>
+.card-shadow {
+  /* @apply bg-gray-100 py-2 pl-4 pr-10 w-full text-sm border border-transparent focus:outline-none; */
+  box-shadow: 4px 4px 6px #b8b9be, -4px -4px 6px #fff;
+}
+
+.card-shadow:hover {
+  box-shadow: inset 4px 4px 6px #b8b9be, inset -4px -4px 6px #fff;
+}
+</style>

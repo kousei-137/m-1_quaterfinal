@@ -6,6 +6,6 @@ export default defineEventHandler(async (): Promise<Comedian[]> => {
     const allComedian = await prisma.comedian.findMany({
         orderBy: {"id": "desc"},
     })
-    console.log(allComedian)
+    // console.log(allComedian)
     return allComedian
 })

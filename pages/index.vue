@@ -1,9 +1,4 @@
 <template>
-  <button v-if="loggedIn"
-    class="block py-2 pl-3 pr-4 md:bg-transparent md:hover:text-primary-700 md:p-0 dark:text-white md:dark:text-primary-500"
-    @click="signOut({ callbackUrl: '/' })">
-    Sign out
-  </button>
   <NuxtLayout>
     <template #searchInput>
       <SearchInput @searched="scrollToComedian" />
@@ -24,7 +19,7 @@ definePageMeta({
     unauthenticatedOnly: false,
   }
 })
-const { status, signOut } = useAuth()
+const { status, data, getSession } = useAuth()
 const loggedIn = computed(() => status.value === 'authenticated')
 import type { Comedian } from '@prisma/client';
 const comedians: Ref<Comedian[]> = useState('comedians')
@@ -42,5 +37,5 @@ const scrollToComedian = (searchedComedian: Comedian) => {
     element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
-
+console.log(data.value)
 </script>
