@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang='ts'>
-import { Comedian } from '@prisma/client';
+import type { Comedian } from '@prisma/client';
 import type { PropType } from 'vue';
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({

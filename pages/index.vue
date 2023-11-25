@@ -15,10 +15,16 @@
       <ComedianCard v-for="comedian in comedians" :key="comedian.id" :comedian="comedian" @click="openModal(comedian)" />
     </div>
   </div> -->
-  <ModalContent v-show="modalState.showModal" @close="modalState.showModal=false" :comedian="modalState.selectedComedian"/>
+  <ScoreModal v-if="status" v-show="modalState.showModal" @close="modalState.showModal=false" :comedian="modalState.selectedComedian"/>
 </template>
 
 <script setup lang='ts'>
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: false,
+  }
+})
+const { status } = useAuth()
 import type { Comedian } from '@prisma/client';
 const comedians: Ref<Comedian[]> = useState('comedians')
 
