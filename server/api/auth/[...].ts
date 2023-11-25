@@ -95,16 +95,16 @@ export default NuxtAuthHandler({
     callbacks: {
         async signIn({ user, account }) {
             if (account?.provider === 'twitter') {
-                return await signInWithTwitter(user)
+                return await signInWithTwitter(user as User)
             }
             return true
         },
         jwt: async ({ token, user, account }) => {
             let userInfoInDB
             if (account?.provider === 'twitter') {
-                userInfoInDB = await getMeWithTwitter(user?.name)
+                userInfoInDB = await getMeWithTwitter(user?.name!)
             } else if (account?.provider === 'credentials') {
-                userInfoInDB = await getMe(user?.name)
+                userInfoInDB = await getMe(user?.name!)
             }
             const isSignIn = !!user
             if (isSignIn) {
