@@ -1,11 +1,11 @@
 <template>
   <div class="flex justify-center py-6 bg-gray-100">
     <div class="relative w-[calc(80%)]">
-      <input v-model="searchValue" type="search" placeholder="Search..." class="neu-input" />
+      <input v-model="searchValue" @input="isShowFilter=true" type="search" placeholder="Search..." class="neu-input" />
       <button class="absolute inset-y-0 right-0 flex items-center pr-3 shadow-sm hover:shadow-2xl">
         <IconSearch />
       </button>
-      <FilterdModal v-show="searchValue.length > 0" :searchValue="searchValue" @selectedComedian="emit('selectedComedian', )"/>
+      <FilterdModal v-show="searchValue?.length > 0 && isShowFilter" :searchValue="searchValue" @searched="setComedian"/>
     </div>
   </div>
 
@@ -15,7 +15,8 @@
 import type { Comedian } from '@prisma/client';
 const searchValue: Ref<string> = ref('')
 const filteredComedian: Ref<Comedian[]> = ref([])
-const emit = defineEmits(['selectedComedian'])
+const emit = defineEmits(['searched'])
+const isShowFilter: Ref<boolean> = ref(false)
 
 // watchEffect(() => {
 //     filteredComedian.value = props.comedianObjects.filter((comedian) => {
@@ -23,7 +24,11 @@ const emit = defineEmits(['selectedComedian'])
 //         // console.log(searchValue.value + comedian)
 //     })
 // })
-
+const setComedian = (searchedComedian: Comedian) => {
+  searchValue.value = searchedComedian.name
+  isShowFilter.value = false
+  emit('searched', searchedComedian)
+}
 </script>
   
 <style>
