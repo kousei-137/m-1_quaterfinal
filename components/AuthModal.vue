@@ -12,11 +12,13 @@
                 <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="登録" />
                 <div role="tabpanel" class="tab-content">
                     <div class="flex flex-col items-center justify-center p-3">
-                        <AuthSignUp />
+                        <AuthSignUp @isLoading="handleLoading" />
                     </div>
                 </div>
             </div>
-            <span v-else class="loading loading-dots loading-lg"></span>
+            <div v-else class="w-full flex justify-center">
+                <span class="loading loading-dots block w-24 my-10"></span>
+            </div>
         </div>
 
         <form method="dialog" class="modal-backdrop" @click="emit('close', true)"></form>

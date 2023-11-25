@@ -11,13 +11,13 @@ const signInWithTwitter = async (user: User) => {
     try {
         let registeredUser = await prisma.user.findUnique({
             where: {
-                twitterId: user.name!
+                name: user.name!
             }
         })
         if (!registeredUser) {
             registeredUser = await prisma.user.create({
                 data: {
-                    twitterId: user.name
+                    name: user.name
                 }
             })
         }
@@ -35,12 +35,11 @@ const signInWithTwitter = async (user: User) => {
         })
     }
 }
-
 const getMeWithTwitter = async (twitterName: string) => {
     try {
         const me = await prisma.user.findUnique({
             where: {
-                twitterId: twitterName
+                name: twitterName
             }
         })
         if (!me) {
@@ -57,7 +56,6 @@ const getMeWithTwitter = async (twitterName: string) => {
         })
     }
 }
-
 const getMe = async (userName: string) => {
     try {
       const me = await prisma.user.findUnique({
@@ -75,7 +73,7 @@ const getMe = async (userName: string) => {
     } catch (error) {
       throw createError({
         statusCode: 500,
-        statusMessage: 'twitter getMe is failed'
+        statusMessage: 'ユーザー情報を取得できません'
       })
     }
   }
@@ -149,7 +147,6 @@ export default NuxtAuthHandler({
                     })
                 }
                 /* eslint-disable no-console */
-                console.log(user)
                 return user
             }
         })

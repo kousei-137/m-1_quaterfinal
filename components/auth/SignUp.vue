@@ -38,6 +38,7 @@
 
 <script setup lang='ts'>
 import { z, ZodError } from 'zod'
+const { signIn } = useAuth()
 const userId: Ref<string> = ref('')
 const password: Ref<string> = ref('')
 const comfirmPassword: Ref<string> = ref('')
@@ -86,9 +87,21 @@ const register = async () => {
         })
         if (error.value) {
             console.log(error.value)
+            return
         }
         if (data.value) {
             console.log('Successfully Registered')
+        }
+        const result = await signIn('credentials', {
+            name: userId.value,
+            password: password.value
+        }, {
+            redirect: '/'
+        })
+        if (result?.ok && !result.error) {
+            console.log('Successfully LoggedIn' + result)
+        } else {
+            console.log('Something Went Wrong')
         }
     } catch (error) {
         console.log(error)
