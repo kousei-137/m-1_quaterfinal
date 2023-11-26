@@ -13,21 +13,22 @@ export default defineNuxtConfig({
   },
   auth: {
     enableGlobalAppMiddleware: true,
-    provider: {
-      type: 'auth-js'
-    },
-    origin: 'http://localhost:3000'
+    // baseURL: process.env.AUTH_ORIGIN,
+    // provider: {
+    //   type: 'auth-js'
+    // },
   },
   runtimeConfig: {
     auth: {
       provider: {
         type: 'auth-js'
-      }
+      },
+      origin: process.env.AUTH_ORIGIN,
     },
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     TWITTER_CLIENT_SECRET: process.env.TWITTER_CLIENT_SECRET,
     public: {
       TWITTER_CLIENT_ID: process.env.TWITTER_CLIENT_ID
     }
-  }
+  },
 })
