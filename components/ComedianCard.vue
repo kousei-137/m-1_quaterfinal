@@ -6,12 +6,12 @@
             
             <div class="flex">
                 <div class="card flex-1 m-3 text-center justify-center bg-neutral text-neutral-content">
-                    <span class="text-2xl">{{ $props.comedian?.avgScrore || 75}}</span>
+                    <span class="text-2xl">{{ props.comedian?.avgScrore || 75}}</span>
                     <span>平均</span>
                 </div>
                 <div class="card flex-1 m-3 text-center justify-center bg-neutral text-neutral-content">
                     <!-- <input type="number" inputmode="numeric" v-model="userScore" min="50" max="100"> -->
-                    <span class="text-2xl">{{ $props.comedian?.score || '--' }}</span>
+                    <span class="text-2xl">{{ props.comedian?.score || '--' }}</span>
                     <span>採点</span>
                 </div>
             </div>
