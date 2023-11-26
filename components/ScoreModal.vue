@@ -30,6 +30,7 @@
 import type { Comedian } from '@prisma/client';
 import type { SessionData } from '@sidebase/nuxt-auth/dist/runtime/composables/useAuthState';
 import type { PropType } from 'vue';
+import { useUpdateAverageScore } from '~/composables/useUpdateAverageScore';
 const { data } = useAuth()
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({
@@ -72,15 +73,18 @@ const registerScore = async () => {
         })
         if (error.value) {
             console.log(error.value)
-            isLoading.value = false
             return
         }
         if (data.value) {
             console.log(data.value)
             emit('close', true)
+            return await useUpdateAverageScore(props.comedian?.id!)
         }
     } catch (error) {
         console.log(error)
-    } 
+    } finally {
+        isLoading.value = false
+        location.reload()
+    }
 }
 </script>
