@@ -109,4 +109,5 @@ const register = async () => {
         emit('isLoading', false)
     }
 }
+
 </script>
