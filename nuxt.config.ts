@@ -13,10 +13,10 @@ export default defineNuxtConfig({
   },
   auth: {
     enableGlobalAppMiddleware: true,
-    // baseURL: process.env.AUTH_ORIGIN,
-    // provider: {
-    //   type: 'auth-js'
-    // },
+    baseURL: process.env.AUTH_ORIGIN,
+    provider: {
+      type: 'auth-js'
+    },
   },
   runtimeConfig: {
     auth: {
