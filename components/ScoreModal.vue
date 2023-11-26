@@ -30,7 +30,6 @@
 import type { Comedian } from '@prisma/client';
 import type { SessionData } from '@sidebase/nuxt-auth/dist/runtime/composables/useAuthState';
 import type { PropType } from 'vue';
-import { object } from 'zod';
 const { data } = useAuth()
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({

@@ -37,5 +37,4 @@ const scrollToComedian = (searchedComedian: Comedian) => {
     element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 }
-console.log(data.value)
 </script>
