@@ -2,6 +2,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: true,
   modules: ['@sidebase/nuxt-auth', '@nuxtjs/tailwindcss'],
   head: {
     htmlAttrs:{ lang: 'ja'},
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
     provider: {
       type: 'auth-js'
     },
-    origin: 'https://green-tree-024348a00.4.azurestaticapps.net/'
+    origin: 'http://localhost:3000'
   },
   runtimeConfig: {
     auth: {
