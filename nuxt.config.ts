@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     provider: {
       type: 'auth-js'
     },
-    origin: 'http://localhost:3000'
+    origin: 'https://green-tree-024348a00.4.azurestaticapps.net/'
   },
   runtimeConfig: {
     auth: {
