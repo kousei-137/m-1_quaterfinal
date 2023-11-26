@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  name            String  @unique
+  passwordHash    String?
+  // twitterId       String?
+  // instagramId     String?  @unique
+  // googleId        String?  @unique
+  isEmailVerified Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  lastLogin       DateTime @updatedAt
+  Score           Score[]
+}
+
+model Comedian {
+  id           String  @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  averageScore Float?  @default(50)
+  scores       Score[]
+}
+
+model Score {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String @db.ObjectId
+  comedianId  String @db.ObjectId
+  score     Int
+  scoreDate DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  comedian Comedian @relation(fields: [comedianId], references: [id])
+
+  @@index([userId], name: "userIndex")
+  @@index([comedianId], name: "comedianIndex")
+}
