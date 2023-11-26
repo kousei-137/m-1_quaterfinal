@@ -23,14 +23,19 @@
 
 <script setup lang='ts'>
 import type { Comedian } from '@prisma/client';
+import type { SessionData } from '@sidebase/nuxt-auth/dist/runtime/composables/useAuthState';
 import type { PropType } from 'vue';
+import { object } from 'zod';
+const {data} = useAuth()
 // const selectedComedian = inject(selectedComedian)
 const props = defineProps({
     comedian: Object as PropType<Comedian>
 })
 const emit = defineEmits(['close'])
 const isError: Ref<boolean> = ref(false)
+const isLoading: Ref<boolean> = ref(false)
 const score: Ref<string> = ref("")
+const userData: Ref<SessionData> = ref(null)
 const validateScore = (score: string): boolean => {
     score = score.toLowerCase()
     const num = parseInt(score)
@@ -46,4 +51,27 @@ const validateScore = (score: string): boolean => {
 watchEffect(() => {
     validateScore(score.value)
 })
+watchEffect(() => {
+    userData.value = data.value
+})
+console.log(userData.value)
+const registerScore = async () => {
+    try {
+        isLoading.value = true
+        const { data, error } = await useFetch('/api/score', {
+            method: 'POST',
+            body: {
+                score: parseInt(score.value),
+                userId: userData.value?.user.id,
+                comedianId: props.comedian?.id
+            }
+        })
+        if (error.value) {
+            console.log(error.value)
+            return
+        }
+    } catch (error) {
+
+    }
+}
 </script>
