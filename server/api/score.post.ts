@@ -38,7 +38,7 @@ export default defineEventHandler(async (event: H3Event) => {
                 comedianId: body.comedianId,
             }
         })
-        return score
+        return { score }
     } catch (error) {
         throw createError({
             statusCode: 500,

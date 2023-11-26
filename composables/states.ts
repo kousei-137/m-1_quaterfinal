@@ -1,9 +1,6 @@
 import type { Comedian } from "@prisma/client"
 import { useComediansStore } from "~/stores/comedians"
 
-// export const useComedians = async() => {
-//     return useState<Comedian[]>('comedians', () => useAllComedian())
-// }
 
 export const useAllComedian = async () => {
     const comedianStore = useComediansStore()

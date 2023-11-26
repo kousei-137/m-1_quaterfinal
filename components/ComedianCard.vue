@@ -6,12 +6,12 @@
             
             <div class="flex">
                 <div class="card flex-1 m-3 text-center justify-center bg-neutral text-neutral-content">
-                    <span class="text-2xl">{{ props.comedian?.avgScrore || 75}}</span>
+                    <span class="text-2xl">{{ props.comedian?.averageScore || 75}}</span>
                     <span>平均</span>
                 </div>
                 <div class="card flex-1 m-3 text-center justify-center bg-neutral text-neutral-content">
                     <!-- <input type="number" inputmode="numeric" v-model="userScore" min="50" max="100"> -->
-                    <span class="text-2xl">{{ props.comedian?.score || '--' }}</span>
+                    <span class="text-2xl">{{ userScore?.score || '--' }}</span>
                     <span>採点</span>
                 </div>
             </div>
@@ -20,14 +20,23 @@
 </template>
 
 <script setup lang='ts'>
+import type { Comedian, Score } from '@prisma/client';
+import type { PropType } from 'vue';
+const {data} = useAuth()
 const emit = defineEmits(['open'])
 const props = defineProps({
     comedian: {
-        type: Object,
+        type: Object as PropType<Comedian>,
         required: true
     }
 })
-// console.log(props.comedian)
+const userScore: Ref<Score> = ref(computed(() => {
+    return props.comedian.scores?.find(scoreObject => scoreObject.userId === data.value?.id)!
+}))
+
+const getScoreByUser = async() => {
+    
+}
 </script>
 
 <style>
