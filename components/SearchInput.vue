@@ -1,15 +1,5 @@
 <template>
   <div class="flex justify-center items-center py-6 bg-gray-100">
-    <!-- <div class="dropdown" open>
-      <div tabindex="0" role="button" @click="isDropdownOpen = false" :class="{ 'hidden': isDropdownOpen }">
-        <IconSort />
-      </div>
-      <ul open class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-        :class="{ 'hidden': isDropdownOpen }">
-        <li><button @click="useSortComediansByScore">点数で並び替え</button></li>
-        <li><button @click="useSortComediansByName">名前で並び替え</button></li>
-      </ul>
-    </div> -->
     <div>
       <details class="dropdown">
         <summary class="btn p-0 bg-transparent border-none">
