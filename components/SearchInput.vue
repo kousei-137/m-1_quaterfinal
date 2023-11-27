@@ -1,25 +1,56 @@
 <template>
-  <div class="flex justify-center py-6 bg-gray-100">
-    <IconSort @click="useSortComediansByName" />
+  <div class="flex justify-center items-center py-6 bg-gray-100">
+    <!-- <div class="dropdown" open>
+      <div tabindex="0" role="button" @click="isDropdownOpen = false" :class="{ 'hidden': isDropdownOpen }">
+        <IconSort />
+      </div>
+      <ul open class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+        :class="{ 'hidden': isDropdownOpen }">
+        <li><button @click="useSortComediansByScore">点数で並び替え</button></li>
+        <li><button @click="useSortComediansByName">名前で並び替え</button></li>
+      </ul>
+    </div> -->
+    <div>
+      <details class="dropdown">
+        <summary class="btn p-0 bg-transparent border-none">
+          <IconSort />
+        </summary>
+        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+          <li><button @click="useSortComediansByScore">点数で並び替え</button></li>
+          <li><button @click="useSortComediansByName">名前で並び替え</button></li>
+        </ul>
+      </details>
+    </div>
+
     <div class="relative w-[calc(70%)]">
-      <input v-model="searchValue" @input="isShowFilter=true" type="search" placeholder="Search..." class="neu-input" />
+      <input v-model="searchValue" @input="isShowFilter = true" type="search" placeholder="Search..." class="neu-input" />
       <button class="absolute inset-y-0 right-0 flex items-center pr-3 shadow-sm hover:shadow-2xl">
         <IconSearch />
       </button>
-      <FilterdModal v-show="searchValue?.length > 0 && isShowFilter" :searchValue="searchValue" @searched="setComedian"/>
+      <FilterdModal v-show="searchValue?.length > 0 && isShowFilter" :searchValue="searchValue" @searched="setComedian" />
     </div>
-    <IconSignout v-if="loggedIn" @click="signOut()" />
+    <!-- <IconSignout v-if="loggedIn" @click="signOut()" /> -->
+    <div v-if="loggedIn">
+      <details class="dropdown dropdown-end">
+        <summary class="btn p-0 bg-transparent border-none">
+          <IconSignout />
+        </summary>
+        <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+          <li><button @click="signOut()">ログアウト</button></li>
+        </ul>
+      </details>
+    </div>
   </div>
-
 </template>
   
 <script setup lang="ts">
 import type { Comedian } from '@prisma/client';
-const {signOut, status} = useAuth()
+const { signOut, status } = useAuth()
 const searchValue: Ref<string> = ref('')
 const emit = defineEmits(['searched'])
 const isShowFilter: Ref<boolean> = ref(false)
 const loggedIn = computed(() => status.value === 'authenticated')
+const isDropdownOpen = ref(false)
 
 const setComedian = (searchedComedian: Comedian) => {
   searchValue.value = searchedComedian.name
