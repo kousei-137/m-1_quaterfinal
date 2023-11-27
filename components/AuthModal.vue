@@ -1,7 +1,7 @@
 <template>
     <dialog class="modal modal-bottom sm:modal-middle md:modal-middle bg-slate-700 bg-opacity-50" open>
         <div class="modal-box">
-            <div v-if="!isLoading" role="tablist" class="tabs tabs-boxed">
+            <div v-if="!isLoading" role="tablist" class="tabs tabs-boxed w-full">
                 <input type="radio" name="my_tabs_1" role="tab" class="tab w-full" aria-label="ログイン" checked />
                 <div role="tabpanel" class="tab-content">
                     <div class="flex flex-col items-center justify-center p-3">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
 
-                <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="登録" />
+                <input type="radio" name="my_tabs_1" role="tab" class="tab w-full" aria-label="登録" />
                 <div role="tabpanel" class="tab-content">
                     <div class="flex flex-col items-center justify-center p-3">
                         <AuthSignUp @isLoading="handleLoading" />

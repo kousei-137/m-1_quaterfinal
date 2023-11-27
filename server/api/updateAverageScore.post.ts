@@ -8,8 +8,7 @@ export default defineEventHandler(async (event: H3Event) => {
             where: { comedianId: body.comedianId },
             select: { score: true }
         });
-        const averageScore = scores.reduce((acc, curr) => acc + curr.score, 0) / scores.length;
-
+        const averageScore = (scores.reduce((acc, curr) => acc + curr.score, 0) / scores.length)
         return await prisma.comedian.update({
             where: { id: body.comedianId },
             data: { averageScore }

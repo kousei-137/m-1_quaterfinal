@@ -36,7 +36,7 @@ const { data } = useAuth()
 const props = defineProps({
     comedian: Object as PropType<Comedian>
 })
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'score'])
 const isError: Ref<boolean> = ref(false)
 const isLoading: Ref<boolean> = ref(false)
 const score: Ref<string> = ref("")
@@ -59,7 +59,6 @@ watchEffect(() => {
 watchEffect(() => {
     userData.value = data.value
 })
-console.log(userData.value?.id)
 const registerScore = async () => {
     try {
         isLoading.value = true
@@ -76,15 +75,18 @@ const registerScore = async () => {
             return
         }
         if (data.value) {
-            console.log(data.value)
+            score.value=''
             emit('close', true)
+            await useAllComedian()
             return await useUpdateAverageScore(props.comedian?.id!)
         }
     } catch (error) {
-        console.log(error)
+        throw createError({
+            statusCode: 401,
+            message: '得点の登録に失敗しました'
+        })
     } finally {
-        isLoading.value = false
-        location.reload()
+        // isLoading.value = false
     }
 }
 </script>
