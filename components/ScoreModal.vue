@@ -72,10 +72,9 @@ const registerScore = async () => {
         })
         if (error.value) {
             console.log(error.value)
-            return
-        }
-        if (data.value) {
+        } else if (data.value) {
             score.value=''
+            isLoading.value = false
             emit('close', true)
             await useAllComedian()
             return await useUpdateAverageScore(props.comedian?.id!)
@@ -86,7 +85,8 @@ const registerScore = async () => {
             message: '得点の登録に失敗しました'
         })
     } finally {
-        // isLoading.value = false
+        isLoading.value = false
+        emit('close', true)
     }
 }
 </script>
