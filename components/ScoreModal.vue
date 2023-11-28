@@ -71,7 +71,10 @@ const registerScore = async () => {
             }
         })
         if (error.value) {
+            //要エラー処理
             console.log(error.value)
+            isLoading.value = false
+            emit('close', true)
         } else if (data.value) {
             score.value=''
             isLoading.value = false
@@ -85,8 +88,6 @@ const registerScore = async () => {
             message: '得点の登録に失敗しました'
         })
     } finally {
-        isLoading.value = false
-        emit('close', true)
     }
 }
 </script>
