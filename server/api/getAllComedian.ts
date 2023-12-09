@@ -9,6 +9,5 @@ export default defineEventHandler(async (): Promise<Comedian[]> => {
             scores: true
         }
     })
-    // console.log(allComedian)
     return allComedian
 })

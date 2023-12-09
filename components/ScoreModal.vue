@@ -72,7 +72,7 @@ const registerScore = async () => {
         })
         if (error.value) {
             //要エラー処理
-            console.log(error.value)
+            window.alert(error.value)
             isLoading.value = false
             emit('close', true)
         } else if (data.value) {

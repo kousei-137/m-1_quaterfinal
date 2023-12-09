@@ -98,7 +98,6 @@ export default NuxtAuthHandler({
             return true
         },
         jwt: async ({ token, user, account }) => {
-            console.log(user?.id)
             let userInfoInDB
             if (account?.provider === 'twitter') {
                 userInfoInDB = await getMeWithTwitter(user?.name!)

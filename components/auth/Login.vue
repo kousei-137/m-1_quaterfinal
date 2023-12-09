@@ -73,7 +73,7 @@ const signInUser = async () => {
         if (result?.ok && !result.error) {
             console.log('Successfully LoggedIn' + result)
         } else {
-            console.log('Something Went Wrong')
+            window.alert('ユーザー登録に失敗しました')
         }
     } catch (error) {
 

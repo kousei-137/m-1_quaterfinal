@@ -86,7 +86,7 @@ const register = async () => {
             }
         })
         if (error.value) {
-            console.log(error.value)
+            window.alert('ユーザー登録に失敗しました')
             return
         }
         if (data.value) {
@@ -101,10 +101,10 @@ const register = async () => {
         if (result?.ok && !result.error) {
             console.log('Successfully LoggedIn' + result)
         } else {
-            console.log('Something Went Wrong')
+            console.log('ユーザー登録に失敗しました')
         }
     } catch (error) {
-        console.log(error)
+        window.alert('ユーザー登録に失敗しました')
     } finally {
         emit('isLoading', false)
     }

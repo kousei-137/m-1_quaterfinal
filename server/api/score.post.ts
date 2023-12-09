@@ -11,7 +11,6 @@ export default defineEventHandler(async (event: H3Event) => {
                 statusMessage: 'リクエスト情報を見つけることが出来ません'
             })
         }
-        console.log(body.score + '点 ' + body.userId + 'ユーザー' + body.comedianId + 'さん')
         const scoredData: Score | null = await prisma.score.findFirst({
             where: {
                 userId: body.userId,
