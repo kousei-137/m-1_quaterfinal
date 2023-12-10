@@ -32,7 +32,6 @@ const isLoading: Ref<boolean> = ref(false)
 const handleLoading = (bool: boolean) => {
     isLoading.value = bool
 }
-// ここに認証ロジックを追加します
 </script>
   
 <style>
