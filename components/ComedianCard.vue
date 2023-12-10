@@ -38,9 +38,6 @@ const userScore: Ref<Score> = ref(computed(() => {
     return props.comedian.scores?.find(scoreObject => scoreObject.userId === data.value?.id)!
 }))
 
-const getScoreByUser = async() => {
-    
-}
 </script>
 
 <style>
