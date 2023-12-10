@@ -14,9 +14,9 @@
 
     <div class="relative w-[calc(70%)]">
       <input v-model="searchValue" @input="isShowFilter = true" type="search" placeholder="Search..." class="neu-input" />
-      <button class="absolute inset-y-0 right-0 flex items-center pr-3 shadow-sm hover:shadow-2xl">
+      <i class="absolute inset-y-0 right-0 flex items-center pr-3 shadow-sm hover:shadow-2xl">
         <IconSearch />
-      </button>
+      </i>
       <FilterdModal v-show="searchValue?.length > 0 && isShowFilter" :searchValue="searchValue" @searched="setComedian" />
     </div>
     <!-- <IconSignout v-if="loggedIn" @click="signOut()" /> -->
